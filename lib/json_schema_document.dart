@@ -66,6 +66,7 @@ class JsonSchema {
             : List.empty(),
         enum_ = map['enum'] ?? [],
         _source = map,
+        userInterface = map['userInterface'] ?? {},
         properties = map['properties'] is Map<String, dynamic>
             ? (map['properties'] as Map<String, dynamic>)
                 .map<String, JsonSchema>(
@@ -99,6 +100,9 @@ class JsonSchema {
   /// Useful metadata about the schema's context.
   Map<String, dynamic> annotations;
 
+  //
+  Map<String, dynamic> userInterface;
+
   /// The value of this keyword MUST be either a string or an array. If it is an array, elements of the array MUST be strings and MUST be unique.
   ///
   /// String values MUST be one of the six primitive types ("null", "boolean", "object", "array", "number", or "string"), or "integer" which matches any number with a zero fractional part.
@@ -113,7 +117,7 @@ class JsonSchema {
   /// An object instance is valid against this keyword if every item in the array is the name of a property in the instance. \
   ///
   /// Omitting this keyword has the same behavior as an empty array.
-  List<String> required;
+  List<dynamic> required;
 
   /// ### 6.1.2. enum
   /// The value of this keyword MUST be an array. This array SHOULD have at least one element. Elements in the array SHOULD be unique.
